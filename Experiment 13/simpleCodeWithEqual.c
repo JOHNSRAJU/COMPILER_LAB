@@ -23,29 +23,20 @@ int main(){
             oper[opCount++].op = str[i];
         }
     }
-    for (i = 0; i < opCount; i++){
-        printf("%c = ", (90 - i));
-        if (str[(oper[i].pos) - 1] == '$'){
-            printf("%c ", (90 - i+1));
-        }
-        else{
-            printf("%c ", str[(oper[i].pos) - 1]);
-        }
-        printf("%c ", oper[i].op);
-        if (str[(oper[i].pos) + 1] == '$'){
-            printf("%c \n", (90 - i+1));
-        }
-        else{
-            printf("%c \n", str[(oper[i].pos) + 1]);
-        }
-        str[(oper[i].pos) - 1] = '$';
-        str[(oper[i].pos) + 1] = '$';
+    for (i = 0; i < opCount; i++)
+    {
+        printf("%c = %c %c %c\n", (90 - i), str[(oper[i].pos) - 1], oper[i].op, str[(oper[i].pos) + 1]);
+        
+        for (j = 0; str[j] != '\0'; j++){
+        	if (str[j] == str[(oper[i].pos) - 1] || str[j] == str[(oper[i].pos) + 1]){
+			str[j]=(char)90 - i;
+        	}
+    	}
     }
-
     for (j = 0; str[j] != '\0'; j++){
         if (str[j] == '=')
         {
-            printf("%c = %c\n", str[0], (char)(90 - i - 1));
+            printf("%c = %c\n", str[0], (char)(90 - i + 1));
         }
     }
     return 0;
